@@ -2,13 +2,13 @@
   <header class="myheader">
     <nav class="nav grid" id="nav">
       <div class="logo">
-        <a href="#"><font-awesome-icon :icon="['fas', 'laptop-medical']"/></a>
+        <a href="#"><fa :icon="['fas', 'laptop-medical']"/></a>
       </div>
 
       <div class="nav_menu" id="nav_menu">
         <ul class="nav_list">
           <li class="nav_item">
-            <a href="#home" class="nav_link">Home</a>
+            <router-link to="/" class="nav_link">Home</router-link>
           </li>
           <li class="nav_item">
             <a href="#services" class="nav_link">Services</a>
@@ -17,7 +17,7 @@
             <a href="#games" class="nav_link">Games</a>
           </li>
           <li class="nav_item">
-            <a href="#" class="nav_link">About</a>
+            <router-link to="/About" class="nav_link">About</router-link>
           </li>
           <li class="nav_item">
             <a href="#" class="nav_link">Contact</a>
@@ -35,6 +35,7 @@
       </div> -->
 
     </nav>
+    <router-view />
   </header>
 </template>
 
