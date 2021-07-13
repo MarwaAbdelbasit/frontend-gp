@@ -1,35 +1,30 @@
 <template lang="html">
   <div class="home" id="Home">
     <Header/>
-    <div class="forms">
-      <LogIn/>
-      <SignUp/>
-    </div>
+    <Slider/>
     <Services id="services"/>
     <Games id="games"/>
-    <Doctors/>
+    <Suggestions id="suggestions"/>
     <Footer/>
   </div>
 </template>
 
 <script>
 import Header from '../components/Header.vue'
-import LogIn from '../components/LogIn.vue'
-import SignUp from '../components/SignUp.vue'
+import Slider from '../components/Slider.vue'
 import Services from '../components/Services.vue'
 import Games from '../components/Games.vue'
-import Doctors from '../components/Doctors.vue'
+import Suggestions from '../components/Suggestions.vue'
 import Footer from '../components/Footer.vue'
 
 export default {
   name: 'Home',
   components: {
     Header,
-    LogIn,
-    SignUp,
+    Slider,
     Services,
-    Doctors,
     Games,
+    Suggestions,
     Footer,
   },
 }
@@ -37,7 +32,6 @@ export default {
 
 <style lang="css" scoped>
 .forms {
-  margin-top: 3rem;
   display: flex;
   flex-direction: row;
   justify-content: space-around;

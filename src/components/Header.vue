@@ -8,7 +8,7 @@
       <div class="nav_menu" id="nav_menu">
         <ul class="nav_list">
           <li class="nav_item">
-            <router-link to="/" class="nav_link">Home</router-link>
+            <router-link :to="{ name: 'Home' }" class="nav_link">Home</router-link>
           </li>
           <li class="nav_item">
             <a href="#services" class="nav_link">Services</a>
@@ -17,15 +17,16 @@
             <a href="#games" class="nav_link">Games</a>
           </li>
           <li class="nav_item">
-            <router-link to="/About" class="nav_link">About</router-link>
+            <a href="#suggestions" class="nav_link">Contact</a>
           </li>
           <li class="nav_item">
-            <a href="#" class="nav_link">Contact</a>
+            <router-link :to="{ name: 'Login' }" class="nav_link logSignBut">Login</router-link>
           </li>
-          <!-- <li class="nav_item">
-            <a class="nav_link whiteButton">Get started</a>
-          </li> -->
+          <li class="nav_item">
+            <router-link :to="{ name: 'Signup' }" class="nav_link logSignBut">Sign up</router-link>
+          </li>
         </ul>
+
       </div>
 
       <!-- <div class="nav_toggle" id="nav_toggle">
@@ -37,6 +38,7 @@
     </nav>
     <router-view />
   </header>
+
 </template>
 
 <script>
@@ -47,7 +49,7 @@ export default {
 
 <style lang="css" scoped>
 .logo a {
-  color: #1e212d;
+  color: #3ec1a9;
   font-size: 2rem;
 }
 
@@ -128,5 +130,18 @@ export default {
 .nav_item .active {
   color: #3ec1a9;
   transition: .3s;
+}
+
+.logSignBut {
+  color: #3ec1aa;
+  margin-left: 0.5rem;
+  border: 2px solid #3ec1aa;
+  border-radius: 25px;
+  padding: 0.2rem 1rem;
+}
+
+.logSignBut:hover {
+  color: #1e212d;
+  border: 2px solid #1e212d;
 }
 </style>

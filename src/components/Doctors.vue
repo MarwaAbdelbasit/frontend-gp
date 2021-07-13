@@ -15,7 +15,7 @@
 
       <div class="doctor">
         <div class="doctorImg">
-          <font-awesome-icon :icon="['fas', 'columns']"/>
+          <fa :icon="['fas', 'columns']"/>
         </div>
         <div class="doctorContent">
           <h2>Dashboard</h2>
@@ -25,7 +25,7 @@
 
       <div class="doctor">
         <div class="doctorImg">
-          <font-awesome-icon :icon="['fas', 'columns']"/>
+          <fa :icon="['fas', 'columns']"/>
         </div>
         <div class="doctorContent">
           <h2>Dashboard</h2>
@@ -35,7 +35,7 @@
 
       <div class="doctor">
         <div class="doctorImg">
-          <font-awesome-icon :icon="['fas', 'columns']"/>
+          <fa :icon="['fas', 'columns']"/>
         </div>
         <div class="doctorContent">
           <h2>Dashboard</h2>
