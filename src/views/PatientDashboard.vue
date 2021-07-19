@@ -17,9 +17,9 @@
           <router-link :to="{ name: 'Home', params: {} }" class="home">
             <li><span>Home</span></li>
           </router-link>
-          <li @click="activeTab = '1'" :class="[activeTab === '1' ? 'active' : '']"><span>My profile</span></li>
-          <li @click="activeTab = '2'" :class="[activeTab === '2' ? 'active' : '']"><span>Cubes game</span></li>
-          <li @click="activeTab = '3'" :class="[activeTab === '3' ? 'active' : '']"><span>Musical Fingers game</span></li>
+          <li @click="activeTab = '1'; showProfile;" :class="[activeTab === '1' ? 'active' : '']"><span>My profile</span></li>
+          <li @click="activeTab = '2'; showProgressCubes;" :class="[activeTab === '2' ? 'active' : '']"><span>Cubes game</span></li>
+          <li @click="activeTab = '3'; showProgressfinger" :class="[activeTab === '3' ? 'active' : '']"><span>Musical Fingers game</span></li>
         </ul>
       </div>
     </div>
@@ -44,18 +44,43 @@
 import PatientProfile from '../components/PatientProfile.vue'
 import CubesGamePat from '../components/CubesGamePat.vue'
 import MusicalFingersPat from '../components/MusicalFingersPat.vue'
+import axios from 'axios'
 
 export default {
+
   name: 'PatientDashboard',
   data() {
       return {
         activeTab: '1',
+        cubeProgress: [],
+        fingerProgress: [],
+        profile: [],
       }
   },
   components: {
     PatientProfile,
     CubesGamePat,
     MusicalFingersPat,
+  },
+  methods: {
+    showProgressCubes() {
+      axios.get('' + this.id).
+      then(response => {
+        this.cubeProgress = response.data;
+      });
+    },
+    showProgressfinger() {
+      axios.get('' + this.id).
+      then(response => {
+        this.fingerProgress = response.data;
+      })
+    },
+    showProfile() {
+      axios.get('' + this.id).
+      then(response => {
+        this.profile = response.data;
+      });
+    }
   }
 }
 </script>

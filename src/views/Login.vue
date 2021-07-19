@@ -75,7 +75,7 @@ export default {
           });
       }
       else if (this.loginForm.select === 'patient') {
-        await axios.get(`http://f9b588909b24.ngrok.io/doctor/${this.loginForm.username}`)
+        await axios.get(`http://f9b588909b24.ngrok.io/patient/${this.loginForm.username}`)
           .then(() => {
             this.$router.push({name: 'PatientDashboard'});
           });

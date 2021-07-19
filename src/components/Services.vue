@@ -2,7 +2,7 @@
   <div class="services">
     <div class="sectionHeader">
       <h1>Services</h1>
-      <p>Services our project prvides.</p>
+      <p>Services our project provides.</p>
     </div>
 
     <div class="servicesItems">

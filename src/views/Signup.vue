@@ -35,7 +35,7 @@
           <label for="repassword" class="label">Re-enter password:</label>
           <input class="input" type="password" name="" value="" placeholder="re-enter your password">
         </div>
-        <button class="button" type="button" name="button">Sign up</button>
+        <button class="button" type="submit" name="button">Sign up</button>
       </form>
     </div>
     <div class="login">
@@ -48,6 +48,12 @@
 <script>
 export default {
   name: 'Signup',
+  data() {
+    return {
+      signUpForm: {
+      }
+    }
+  }
 }
 </script>
 

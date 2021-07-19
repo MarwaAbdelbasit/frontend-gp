@@ -41,7 +41,7 @@
 
       <button class="button" type="submit" name="button">Submit patient</button>
     </form>
-    <button @click="created" type="button" name="button">click</button>
+    <!-- <button @click="created" type="button" name="button">click</button> -->
   </div>
 </template>
 

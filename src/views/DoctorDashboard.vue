@@ -17,23 +17,23 @@
           <router-link :to="{ name: 'Home', params: {} }" class="home">
             <li><span>Home</span></li>
           </router-link>
-          <li @click="activeTab = '1'" :class="[activeTab === '1' ? 'active' : '']"><span>Evaluate a patient</span></li>
-          <li @click="activeTab = '2'" :class="[activeTab === '2' ? 'active' : '']"><span>Add a patient</span></li>
-          <li @click="activeTab = '3'" :class="[activeTab === '3' ? 'active' : '']"><span @click="getPatients">Show all patients</span></li>
+          <li @click="activeTab = '1'" :class="[activeTab === '1' ? 'active' : '']"><span>Add a patient</span></li>
+          <li @click="activeTab = '2'" :class="[activeTab === '2' ? 'active' : '']"><span @click="getPatients">Show all patients</span></li>
+          <li @click="activeTab = '3'" :class="[activeTab === '3' ? 'active' : '']"><span>Evaluate a patient</span></li>
         </ul>
       </div>
     </div>
     <div class="viewer mar">
-      <div class="evaluate" v-if="activeTab === '1'">
+      <div class="evaluate" v-if="activeTab === '3'">
         <EvaluationForm />
       </div>
 
-      <div class="addPatient" v-if="activeTab === '2'">
+      <div class="addPatient" v-if="activeTab === '1'">
         <AddPatientForm />
       </div>
 
-      <div class="showAll" v-if="activeTab === '3'">
-        <!-- <ShowAllPatients /> -->
+      <div class="showAll" v-if="activeTab === '2'">
+         <ShowAllPatients />
         <div class="patient" v-for="patient in patients" :key="patient.id">
           <router-link :to="{ name: '', params: {} }">
             {{patient.id}} . {{patient.name}}
@@ -58,6 +58,7 @@ export default {
       return {
         activeTab: '1',
         patients: [],
+        numberOfPatients: 0,
         injuries: [],
       }
   },
@@ -89,7 +90,16 @@ export default {
     EvaluationForm,
     AddPatientForm,
     // ShowAllPatients,
-  }
+  },
+  // mounted() {
+  //   console.log("hello from mounted");
+  //   axios.get('https://jsonplaceholder.typicode.com/posts')
+  //   .then(response => {
+  //     this.patients = response.data;
+  //     this.numberOfPatients = this.patients.length;
+  //     console.log(this.numberOfPatients);
+  //   });
+  // }
 }
 </script>
 

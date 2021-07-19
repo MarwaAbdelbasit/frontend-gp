@@ -2,7 +2,7 @@
   <div class="games">
     <div class="sectionHeader">
       <h1>Our Games</h1>
-      <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+      <p>Both games are targeting upper limb disability post stroke, And each game practice a specific hand function, For example “Cubes game” practice shoulder and elbow functions, and “Musical fingers game” practice hand opposition function.</p>
     </div>
 
     <div class="gamesList">
