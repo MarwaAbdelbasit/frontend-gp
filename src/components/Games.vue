@@ -7,7 +7,7 @@
 
     <div class="gamesList">
       <div class="gameCard">
-        <a href="#">
+        <router-link :to="{ name: 'CubesGame' }">
           <div class="projectImg">
             <img src="../assets/cubeGame.png" alt="">
           </div>
@@ -15,11 +15,11 @@
             <h3>Cubes game</h3>
             <h3 style="color: #bbb">practicing shoulder and arm</h3>
           </div>
-        </a>
+        </router-link>
       </div>
 
       <div class="gameCard">
-        <a href="#">
+        <router-link :to="{ name: 'MusicalFingers' }">
           <div class="projectImg">
             <img src="../assets/musicalfingers.jpg" alt="" width="450">
           </div>
@@ -27,7 +27,7 @@
             <h3>Musical fingers</h3>
             <h3 style="color: #bbb">practicing hand opposition</h3>
           </div>
-        </a>
+        </router-link>
       </div>
     </div>
   </div>

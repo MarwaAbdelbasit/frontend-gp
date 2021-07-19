@@ -11,24 +11,33 @@
     <h1>Login</h1>
 
     <div class="login">
-      <form action="/" method="post" @submit="validateForm">
+      <form action="/" method="post" @submit.prevent="login">
         <div class="username field">
           <label for="username" class="label">username or e-mail:</label>
-          <input class="input" type="text" name="username" v-model="username" placeholder="enter username or e-mail">
+          <input class="input" type="text" name="username" v-model="loginForm.username" placeholder="enter username or e-mail">
         </div>
+
+        <div class="select field">
+          <label for="select" class="label">Are you a patient or a doctor:</label>
+          <select class="selectBox input" name="" v-model="loginForm.select">
+            <option value="doctor">Doctor</option>
+            <option value="patient">Patient</option>
+          </select>
+        </div>
+
         <div class="password field">
           <label for="password" class="label">password:</label>
-          <input class="input" type="password" name="password" v-model="password" placeholder="enter password">
+          <input class="input" type="password" name="password" v-model="loginForm.password" placeholder="enter password">
         </div>
-        <button class="button" type="submit" name="login">Login</button>
+        <button @click="login" class="button" type="submit" name="login">Login</button>
       </form>
     </div>
 
-    <div class="errorList">
+    <!-- <div class="errorList">
       <div class="error" v-for="error in formErrors" v-bind:key="error">
         {{ error }}
       </div>
-    </div>
+    </div> -->
 
     <div class="signup">
       <h3><router-link :to="{ name: 'Signup' }" class="signupBut">Create a new account!</router-link></h3>
@@ -38,39 +47,62 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'Login',
   data() {
     return {
-      formErrors: [],
-      username: null,
-      password: null,
-      minChar: 8,
+      // formErrors: [],
+      // username: null,
+      // password: null,
+      // minChar: 8,
+      loginForm: {
+        username: '',
+        select: '',
+        password: '',
+      },
+      isLog: false,
     }
   },
   methods: {
-    validateForm: function(e) {
-
-      this.formErrors = []; //to start without any errors
-
-      if(!this.username) {
-        this.formErrors.push('username can not be empty!');
+    async login() {
+      console.log(this.loginForm.select);
+      if (this.loginForm.select === 'doctor') {
+        await axios.get(`http://f9b588909b24.ngrok.io/doctor/${this.loginForm.username}`)
+          .then(() => {
+            this.$router.push({name: 'DoctorDashboard'});
+          });
       }
-
-      if(!this.password) {
-        this.formErrors.push('password can not be empty!');
+      else if (this.loginForm.select === 'patient') {
+        await axios.get(`http://f9b588909b24.ngrok.io/doctor/${this.loginForm.username}`)
+          .then(() => {
+            this.$router.push({name: 'PatientDashboard'});
+          });
       }
-
-      if(this.password && this.password.length < this.minChar) {
-        this.formErrors.push('please re-enter your password');
-      }
-
-      if(!this.formErrors.length) {
-        return true;
-      }
-
-      e.preventDefault(); //msh 3awz el form yt3mlha submit 8er lma el function de trg3ly true
-    }
+    },
+    // validateForm: function(e) {
+    //
+    //   this.formErrors = []; //to start without any errors
+    //
+    //   if(!this.username) {
+    //     this.formErrors.push('username can not be empty!');
+    //   }
+    //
+    //   if(!this.password) {
+    //     this.formErrors.push('password can not be empty!');
+    //   }
+    //
+    //   if(this.password && this.password.length < this.minChar) {
+    //     this.formErrors.push('please re-enter your password');
+    //   }
+    //
+    //   if(!this.formErrors.length) {
+    //     return true;
+    //   }
+    //
+    //   e.preventDefault(); //msh 3awz el form yt3mlha submit 8er lma el function de trg3ly true
+    // }
   }
 }
 </script>

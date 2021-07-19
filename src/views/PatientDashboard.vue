@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="doctorDash container">
+  <div class="patientDash container">
     <div class="sidebar mar">
       <div class="welcome">
         <div class="logoDiv">
@@ -17,84 +17,51 @@
           <router-link :to="{ name: 'Home', params: {} }" class="home">
             <li><span>Home</span></li>
           </router-link>
-          <li @click="activeTab = '1'" :class="[activeTab === '1' ? 'active' : '']"><span>Evaluate a patient</span></li>
-          <li @click="activeTab = '2'" :class="[activeTab === '2' ? 'active' : '']"><span>Add a patient</span></li>
-          <li @click="activeTab = '3'" :class="[activeTab === '3' ? 'active' : '']"><span @click="getPatients">Show all patients</span></li>
+          <li @click="activeTab = '1'" :class="[activeTab === '1' ? 'active' : '']"><span>My profile</span></li>
+          <li @click="activeTab = '2'" :class="[activeTab === '2' ? 'active' : '']"><span>Cubes game</span></li>
+          <li @click="activeTab = '3'" :class="[activeTab === '3' ? 'active' : '']"><span>Musical Fingers game</span></li>
         </ul>
       </div>
     </div>
     <div class="viewer mar">
       <div class="evaluate" v-if="activeTab === '1'">
-        <EvaluationForm />
+        <PatientProfile />
       </div>
 
       <div class="addPatient" v-if="activeTab === '2'">
-        <AddPatientForm />
+        <CubesGamePat />
       </div>
 
       <div class="showAll" v-if="activeTab === '3'">
-        <!-- <ShowAllPatients /> -->
-        <div class="patient" v-for="patient in patients" :key="patient.id">
-          <router-link :to="{ name: '', params: {} }">
-            {{patient.id}} . {{patient.name}}
-          </router-link>
-          <p v-for="injury in injuries" :key="injury">{{patient.injury.name}}</p>
-          <hr>
-        </div>
+        <MusicalFingersPat />
       </div>
     </div>
+
   </div>
 </template>
 
 <script>
-import axios from 'axios'
-import EvaluationForm from '../components/EvaluationForm.vue'
-import AddPatientForm from '../components/AddPatientForm.vue'
-// import ShowAllPatients from '../components/ShowAllPatients.vue'
+import PatientProfile from '../components/PatientProfile.vue'
+import CubesGamePat from '../components/CubesGamePat.vue'
+import MusicalFingersPat from '../components/MusicalFingersPat.vue'
 
 export default {
-  name: 'DoctorDashboard',
+  name: 'PatientDashboard',
   data() {
       return {
         activeTab: '1',
-        patients: [],
-        injuries: [],
       }
   },
-  methods: {
-    async getPatients() {
-      const resp = await axios.get('http://f9b588909b24.ngrok.io/allpatients');
-      console.log(resp);
-      this.patients = resp.data;
-      this.injuries = resp.data.injuries;
-    },
-
-    // async profile() {
-    //   const resp = await axios.get('http://f9b588909b24.ngrok.io/patient', patient.id);
-    // }
-
-    // getPatients() {
-    //   axios
-    //   .get('http://f9b588909b24.ngrok.io/patient')
-    //   .then((response) => {
-    //     console.log(response.data);
-    //     this.patients = response.data
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   })
-    // }
-  },
   components: {
-    EvaluationForm,
-    AddPatientForm,
-    // ShowAllPatients,
+    PatientProfile,
+    CubesGamePat,
+    MusicalFingersPat,
   }
 }
 </script>
 
 <style lang="css" scoped>
-.doctorDash {
+.patientDash {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
