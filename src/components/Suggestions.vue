@@ -60,7 +60,7 @@ export default {
     //   e.preventDefault();
     // }
     async suggest() {
-      const resp = await axios.post('http://f9b588909b24.ngrok.io/suggestion', this.suggestForm);
+      const resp = await axios.post('http://192.168.1.46:3000/suggestion', this.suggestForm);
       console.log(resp);
     },
   },

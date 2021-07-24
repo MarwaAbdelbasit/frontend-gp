@@ -4,6 +4,7 @@ import Login from "@/views/Login.vue";
 import Signup from "@/views/Signup.vue";
 import DoctorDashboard from "@/views/DoctorDashboard.vue";
 import PatientDashboard from '@/views/PatientDashboard.vue';
+import PatientProfile from '@/views/PatientProfile';
 import CubesGame from '@/views/CubesGame.vue';
 import MusicalFingers from '@/views/MusicalFingers.vue';
 
@@ -29,9 +30,16 @@ const routes = [
     component: DoctorDashboard,
   },
   {
-    path: "/PatientDashboard",
+    path: "/PatientDashboard/:patientID",
     name: "PatientDashboard",
     component: PatientDashboard,
+    props: true,
+  },
+  {
+    path: "/PatientProfile/:patientID",
+    name: "PatientProfile",
+    component: PatientProfile,
+    props: true,
   },
   {
     path: "/CubesGame",

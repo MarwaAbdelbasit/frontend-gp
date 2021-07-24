@@ -17,30 +17,32 @@
           <router-link :to="{ name: 'Home', params: {} }" class="home">
             <li><span>Home</span></li>
           </router-link>
-          <li @click="activeTab = '1'" :class="[activeTab === '1' ? 'active' : '']"><span>Add a patient</span></li>
-          <li @click="activeTab = '2'" :class="[activeTab === '2' ? 'active' : '']"><span @click="getPatients">Show all patients</span></li>
-          <li @click="activeTab = '3'" :class="[activeTab === '3' ? 'active' : '']"><span>Evaluate a patient</span></li>
+          <li @click="activeTab = '1'" :class="[activeTab === '1' ? 'active' : '']"><span @click="getPatients">Show all patients</span></li>
+          <li @click="activeTab = '2'" :class="[activeTab === '2' ? 'active' : '']"><span>Add a patient</span></li>
         </ul>
       </div>
     </div>
     <div class="viewer mar">
-      <div class="evaluate" v-if="activeTab === '3'">
-        <EvaluationForm />
-      </div>
-
-      <div class="addPatient" v-if="activeTab === '1'">
+      <div class="addPatient" v-if="activeTab === '2'">
         <AddPatientForm />
       </div>
 
-      <div class="showAll" v-if="activeTab === '2'">
-         <ShowAllPatients />
-        <div class="patient" v-for="patient in patients" :key="patient.id">
-          <router-link :to="{ name: '', params: {} }">
-            {{patient.id}} . {{patient.name}}
-          </router-link>
-          <p v-for="injury in injuries" :key="injury">{{patient.injury.name}}</p>
-          <hr>
+      <div class="showAll" v-if="activeTab === '1'">
+
+        <div v-if="patients.length">
+          <div class="patient" v-for="patient in patients" :key="patient.id">
+            <router-link :to="{ path: `/patientProfile/${patient.id}` }">
+              {{patient.id}} . {{patient.name}}
+            </router-link>
+            <p v-for="injury in injuries" :key="injury">{{patient.injury.name}}</p>
+            <hr>
+          </div>
         </div>
+
+        <div v-else>
+          <p>Loading patients ...</p>
+        </div>
+
       </div>
     </div>
   </div>
@@ -48,9 +50,7 @@
 
 <script>
 import axios from 'axios'
-import EvaluationForm from '../components/EvaluationForm.vue'
 import AddPatientForm from '../components/AddPatientForm.vue'
-// import ShowAllPatients from '../components/ShowAllPatients.vue'
 
 export default {
   name: 'DoctorDashboard',
@@ -64,32 +64,15 @@ export default {
   },
   methods: {
     async getPatients() {
-      const resp = await axios.get('http://f9b588909b24.ngrok.io/allpatients');
+      const resp = await axios.get('http://192.168.1.46:3000/allpatients');
       console.log(resp);
       this.patients = resp.data;
       this.injuries = resp.data.injuries;
     },
 
-    // async profile() {
-    //   const resp = await axios.get('http://f9b588909b24.ngrok.io/patient', patient.id);
-    // }
-
-    // getPatients() {
-    //   axios
-    //   .get('http://f9b588909b24.ngrok.io/patient')
-    //   .then((response) => {
-    //     console.log(response.data);
-    //     this.patients = response.data
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   })
-    // }
   },
   components: {
-    EvaluationForm,
     AddPatientForm,
-    // ShowAllPatients,
   },
   // mounted() {
   //   console.log("hello from mounted");

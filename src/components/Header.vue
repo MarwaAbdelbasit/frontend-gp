@@ -19,12 +19,12 @@
           <li class="nav_item">
             <a href="#suggestions" class="nav_link">Contact</a>
           </li>
-          <li class="nav_item">
+          <!-- <li class="nav_item">
             <router-link :to="{ name: 'DoctorDashboard' }" class="nav_link logSignBut">Doctor Dashboard</router-link>
-          </li>
-          <li class="nav_item">
+          </li> -->
+          <!-- <li class="nav_item">
             <router-link :to="{ name: 'PatientDashboard' }" class="nav_link logSignBut">Patient Dashboard</router-link>
-          </li>
+          </li> -->
           <li class="nav_item">
             <router-link :to="{ name: 'Login' }" class="nav_link logSignBut">Login</router-link>
           </li>

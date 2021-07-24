@@ -69,15 +69,15 @@ export default {
     async login() {
       console.log(this.loginForm.select);
       if (this.loginForm.select === 'doctor') {
-        await axios.get(`http://f9b588909b24.ngrok.io/doctor/${this.loginForm.username}`)
+        await axios.get(`http://192.168.1.46:3000/login?email=${this.loginForm.username}&type=doctor`)
           .then(() => {
             this.$router.push({name: 'DoctorDashboard'});
           });
       }
       else if (this.loginForm.select === 'patient') {
-        await axios.get(`http://f9b588909b24.ngrok.io/patient/${this.loginForm.username}`)
+        await axios.get(`http://192.168.1.46:3000/login?email=${this.loginForm.username}&type=patient`)
           .then(() => {
-            this.$router.push({name: 'PatientDashboard'});
+            this.$router.push({path: `/PatientDashboard/2`});
           });
       }
     },

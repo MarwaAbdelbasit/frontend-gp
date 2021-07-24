@@ -3,7 +3,7 @@
   <div class="footerContent">
     <div class="aboutUs">
       <h2>About us</h2>
-      <p>A team of five enthusiastic senior engineering students came up with an idea to help people with disability have a more fun, and motivating rehabilitation journey.</p>
+      <p>A team of five passionate senior engineering students came up with an idea to help people with disability have a more fun, and motivating rehabilitation journey.</p>
     </div>
 
     <div class="followUs">

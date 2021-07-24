@@ -17,23 +17,21 @@
           <router-link :to="{ name: 'Home', params: {} }" class="home">
             <li><span>Home</span></li>
           </router-link>
-          <li @click="activeTab = '1'; showProfile;" :class="[activeTab === '1' ? 'active' : '']"><span>My profile</span></li>
-          <li @click="activeTab = '2'; showProgressCubes;" :class="[activeTab === '2' ? 'active' : '']"><span>Cubes game</span></li>
-          <li @click="activeTab = '3'; showProgressfinger" :class="[activeTab === '3' ? 'active' : '']"><span>Musical Fingers game</span></li>
         </ul>
       </div>
     </div>
     <div class="viewer mar">
-      <div class="evaluate" v-if="activeTab === '1'">
-        <PatientProfile />
-      </div>
+      <div class="profile">
+        <div v-if="patient">
+          <h1>patient profile</h1>
+          <h2>{{patient.name}}</h2>
+          <p>parient id is</p>
+          <!-- patientID -->
+        </div>
 
-      <div class="addPatient" v-if="activeTab === '2'">
-        <CubesGamePat />
-      </div>
-
-      <div class="showAll" v-if="activeTab === '3'">
-        <MusicalFingersPat />
+        <div v-else>
+          <p>Loading patient profile</p>
+        </div>
       </div>
     </div>
 
@@ -41,26 +39,19 @@
 </template>
 
 <script>
-import PatientProfile from '../components/PatientProfile.vue'
-import CubesGamePat from '../components/CubesGamePat.vue'
-import MusicalFingersPat from '../components/MusicalFingersPat.vue'
 import axios from 'axios'
 
 export default {
 
   name: 'PatientDashboard',
+  props: ['patientID'],
   data() {
       return {
         activeTab: '1',
         cubeProgress: [],
         fingerProgress: [],
-        profile: [],
+        profile: null,
       }
-  },
-  components: {
-    PatientProfile,
-    CubesGamePat,
-    MusicalFingersPat,
   },
   methods: {
     showProgressCubes() {
@@ -81,7 +72,14 @@ export default {
         this.profile = response.data;
       });
     }
-  }
+  },
+  // mounted() {
+  //   async getPatients() {
+  //     const resp = await axios.get('http://f9b588909b24.ngrok.io/allpatients/' + this.id);
+  //     console.log(resp);
+  //     this.patient = resp.data;
+  //   },
+  // },
 }
 </script>
 
